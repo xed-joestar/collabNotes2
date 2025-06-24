@@ -28,7 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/NotesApp")
+  .connect(
+    process.env.MONGO_URI ||
+      "mongodb+srv://tcollegewala30:fOcy87YhffoTWgnJ@cluster0.qqtdpgf.mongodb.net/collabNotes"
+  )
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
