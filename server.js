@@ -5,14 +5,22 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Note = require("./models/Note");
 const User = require("./models/User");
+const cors = require("cors");
 const { Server } = require("socket.io");
 const http = require("http");
 const server = http.createServer(app); // create HTTP server
 const io = new Server(server); // attach socket.io to the server
 const cookieParser = require("cookie-parser");
 const authMiddleware = require("./middlewares/authMiddleware");
-
+const url = "https://collabnotes2.onrender.com";
+// const url="http://localhost:3000";
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "https://collabnotes2.onrender.com",
+    credentials: true, // allow cookies to be sent
+  })
+);
 dotenv.config();
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -20,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/NotesApp")
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 

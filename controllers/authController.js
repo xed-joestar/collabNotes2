@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const dotenv = require("dotenv");
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || "devil";
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log("Login attempt with email:", email);
   let user = await User.findOne({ email });
 
   if (!user) {
