@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Editor - CollabNotes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <script>
+    <% var note = typeof note !== 'undefined' ? note : {}; %>
+    const existingNote = <%- JSON.stringify(typeof note !== 'undefined' ? note : null) %>;
+    const noteId = "<%= (typeof note !== 'undefined' && note) ? note._id : '' %>";
+  </script>
+  <body
+    class="bg-gradient-to-br from-blue-900 via-zinc-900 to-purple-900 min-h-screen text-gray-100 font-sans"
+  >
+    <div class="flex items-center justify-center min-h-screen py-8">
+      <div
+        class="w-full max-w-2xl bg-zinc-800 bg-opacity-90 rounded-2xl shadow-2xl p-10"
+      >
+        <h1
+          class="text-3xl font-bold text-blue-300 mb-8 tracking-wide text-center"
+        >
+          Edit Note
+        </h1>
+        <form
+          method="POST"
+          action="/editor<%= note && note._id ? '/' + note._id : '' %>"
+          class="flex flex-col gap-6"
+        >
+          <input
+            class="px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 focus:border-blue-500 outline-none text-white placeholder-zinc-400 transition duration-200 text-lg"
+            type="text"
+            name="title"
+            placeholder="Title"
+            value="<%= note && note.title ? note.title : '' %>"
+            required
+          />
+          <textarea
+            class="px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 focus:border-blue-500 outline-none text-white placeholder-zinc-400 transition duration-200 min-h-[180px] resize-y text-base"
+            name="content"
+            placeholder="Write your note here..."
+            required
+          >
+<%= note && note.content ? note.content : '' %></textarea
+          >
+          <input
+            class="px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 focus:border-blue-500 outline-none text-white placeholder-zinc-400 transition duration-200"
+            type="text"
+            name="tags"
+            placeholder="Tags (comma separated)"
+            value="<%= note && note.tags ? note.tags.join(', ') : '' %>"
+          />
+          <div class="flex justify-end gap-4">
+            <a
+              href="/dashboard"
+              class="px-5 py-2 rounded-lg bg-zinc-700 hover:bg-zinc-600 text-gray-200 font-semibold transition"
+              >Cancel</a
+            >
+            <button
+              type="submit"
+              class="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow transition"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="/js/editor.js" defer></script>
+  </body>
+</html>

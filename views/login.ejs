@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div
+      class="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-zinc-900 to-purple-900"
+    >
+      <div
+        class="bg-zinc-800 bg-opacity-90 rounded-xl shadow-2xl p-10 w-full max-w-md flex flex-col items-center"
+      >
+        <h3 class="text-4xl font-bold mb-6 text-blue-400 tracking-wide">
+          Login
+        </h3>
+        <form method="POST" action="/login" class="w-full flex flex-col gap-5">
+          <input
+            class="px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 focus:border-blue-500 outline-none text-white placeholder-zinc-400 transition duration-200"
+            type="email"
+            placeholder="Email"
+            name="email"
+            required
+          />
+          <input
+            class="px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 focus:border-blue-500 outline-none text-white placeholder-zinc-400 transition duration-200"
+            type="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <input
+            class="px-4 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-semibold cursor-pointer transition duration-200 shadow-md"
+            type="submit"
+            value="Login"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
